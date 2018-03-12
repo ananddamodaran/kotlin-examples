@@ -24,3 +24,13 @@
 - Properties are equivalent to fields in Java but more powerful
 - default getters() and setters()
 - Custom getter or setter - *field* - a reserved word required when property needs to access its own value 
+- **Anko and Extenstion Functions**
+    * Anko main purpose is the generation of UI layouts by using code instead of XML
+    * Anko uses extension functions
+    * Extension function is a function that adds a new behaviour to a class, even if we don't have access to the source code of that class.
+- Data Classes
+    * used to avoid boilerplate we need in Java to create POJO
+    * extra functions - equals() , hashCode() , copy()
+    * declaration destructuring
+- Parsing Data
+    *  

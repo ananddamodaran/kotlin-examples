@@ -1,4 +1,4 @@
-package com.ananddamodaran.chapter1
+package com.ananddamodaran.chapter1.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ class ForecastListAdapter(val items: List<String>) :
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val textView = TextView(parent?.context)
-        return  ViewHolder(textView)
+        return ViewHolder(textView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {

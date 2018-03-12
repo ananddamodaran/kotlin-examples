@@ -17,4 +17,10 @@
 - String templates - ${user.name}
 - Property naming
 - New keyword is not required to instantiate an object
-- 
+- In Kotlin everything is an object.
+- Basic Types: Integers, Floats, Double, Characters
+- Variables can be defined as mutable(var) or immutable (val)
+- No need to specify object types, they will be inferred from the value.
+- Properties are equivalent to fields in Java but more powerful
+- default getters() and setters()
+- Custom getter or setter - *field* - a reserved word required when property needs to access its own value 

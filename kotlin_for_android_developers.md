@@ -17,4 +17,6 @@
 - String templates - ${user.name}
 - Property naming
 - New keyword is not required to instantiate an object
-- 
+- Default visiblity is Public is applied to classes, functions and properties
+
+

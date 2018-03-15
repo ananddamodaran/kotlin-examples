@@ -34,4 +34,5 @@ dependencies {
 
     //anko
     implementation "org.jetbrains.anko:anko-common:$anko_version"
+    api 'com.google.code.gson:gson:2.8.2'
 }

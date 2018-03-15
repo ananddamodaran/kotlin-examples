@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import com.ananddamodaran.chapter1.adapters.ForecastListAdapter
 import com.ananddamodaran.chapter1.R
 import com.ananddamodaran.chapter1.Request
+import com.ananddamodaran.chapter1.adapters.ForecastListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.toast
@@ -39,5 +39,6 @@ class MainActivity : AppCompatActivity() {
             Log.d(javaClass.simpleName, "request started")
            uiThread { toast("request started") }
         }
+        
     }
 }

@@ -9,6 +9,7 @@ interface Contract {
         fun hideAnt(ant:Ant)
         fun showScore(score:Int)
         fun showIntroTextVisibility(visibility:Boolean)
+        fun showGameOverTextVisibility(visibility:Boolean)
         fun setPlayerButtonVisibility(visibility:Boolean)
         fun clearView()
 

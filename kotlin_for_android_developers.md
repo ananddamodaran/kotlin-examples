@@ -35,5 +35,7 @@
     * extra functions - equals() , hashCode() , copy()
     * declaration destructuring
 - Parsing Data
-    *  
+    * Companion objects - In Kotlin, we can't create static properties or functions, but we need to rely on objects by using Companion objects
+    * Interfaces in kotlin are powerful, as they can contain code.
+ 
 

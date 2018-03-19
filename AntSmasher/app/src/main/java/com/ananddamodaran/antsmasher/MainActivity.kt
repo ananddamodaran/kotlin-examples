@@ -1,18 +1,14 @@
 package com.ananddamodaran.antsmasher
 
-import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.util.DisplayMetrics
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
-import android.support.v7.widget.Toolbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Contract.GameView {
@@ -20,12 +16,7 @@ class MainActivity : AppCompatActivity(), Contract.GameView {
 
     private val engine: GameEngine
     private val TAG: String = "MainActivity"
-    private var toolbar: Toolbar? = null
-    private var playButton: FloatingActionButton? = null
-    private var introText: TextView? = null
-    private var gameOverText: TextView? = null
-    private var scoreView: TextView? = null
-    private var gameLayout: FrameLayout? = null
+
 
     init {
         Log.d(TAG, "init")
@@ -36,14 +27,11 @@ class MainActivity : AppCompatActivity(), Contract.GameView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d("TAG", "oncreate()")
-        toolbar = findViewById<Toolbar>(R.id.toolbar)
-        playButton = findViewById<FloatingActionButton>(R.id.play_button)
-        introText = findViewById<TextView>(R.id.intro_text)
-        gameOverText = findViewById<TextView>(R.id.game_over)
-        scoreView = findViewById<TextView>(R.id.score)
-        gameLayout = findViewById<FrameLayout>(R.id.game_layout)
 
-        playButton?.setOnClickListener { engine.onPlayButtonClicked()  }
+        play_button?.setOnClickListener { engine.onPlayButtonClicked()  }
+
+        val d = Drawable.createFromStream(getAssets().open("bg.jpeg"), null)
+        game_layout?.background = d
 
         this.engine.onGameViewReady(this)
     }
@@ -62,45 +50,45 @@ class MainActivity : AppCompatActivity(), Contract.GameView {
         val antSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,56f,
                 resources.displayMetrics)
         val layoutParams = FrameLayout.LayoutParams(antSize.toInt(),antSize.toInt())
-        val screenWidth = gameLayout!!.width
-        val screenHeight = gameLayout!!.height
+        val screenWidth = game_layout!!.width
+        val screenHeight = game_layout!!.height
         layoutParams.leftMargin = (ant.x * screenWidth).toInt()
         layoutParams.topMargin = (ant.y * screenHeight).toInt()
-        gameLayout?.addView(antView,layoutParams)
+        game_layout?.addView(antView,layoutParams)
 
     }
 
     override fun hideAnt(antToHide: Ant) {
-        gameLayout?.let {
-            for(i:Int in 0..gameLayout!!.childCount){
-                var view = gameLayout!!.getChildAt(i)
+        game_layout?.let {
+            for(i:Int in 0..game_layout!!.childCount){
+                var view = game_layout!!.getChildAt(i)
                 val ant = view.tag
                 if(ant == antToHide){
-                    gameLayout!!.removeView(view)
+                    game_layout!!.removeView(view)
                     break
                 }
             }
         }
     }
 
-    override fun showScore(score: Int) {
-        scoreView?.text = "Score: $score"
+    override fun showScore(scoreValue: Int) {
+        score?.text = "Score: $scoreValue"
     }
 
     override fun showIntroTextVisibility(visibility: Boolean) {
-        introText?.visibility = if(visibility) View.VISIBLE else View.INVISIBLE
+        intro_text?.visibility = if(visibility) View.VISIBLE else View.INVISIBLE
     }
     override fun showGameOverTextVisibility(visibility: Boolean) {
-        gameOverText?.visibility = if(visibility) View.VISIBLE else View.INVISIBLE
+        game_over?.visibility = if(visibility) View.VISIBLE else View.INVISIBLE
     }
     override fun setPlayerButtonVisibility(visibility: Boolean) {
-        playButton?.visibility = if(visibility) View.VISIBLE else View.INVISIBLE
+        play_button?.visibility = if(visibility) View.VISIBLE else View.INVISIBLE
     }
 
     override fun clearView() {
-        gameLayout?.removeAllViews()
-        introText?.visibility = View.INVISIBLE
-        gameOverText?.visibility = View.INVISIBLE
+        game_layout?.removeAllViews()
+        intro_text?.visibility = View.INVISIBLE
+        game_over?.visibility = View.INVISIBLE
     }
 
     override fun onDestroy() {

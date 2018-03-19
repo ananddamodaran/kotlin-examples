@@ -20,27 +20,35 @@ class GameEngine : Contract.GameEngine {
 
     private val showNewAntRunnble = object : Runnable {
         override fun run() {
-            if(ants.isNotEmpty()){
+            val newAnt = createNewAnt()
+            val isGameOver = checkIfGameIsOver()
+            if(!isGameOver){
+
+                ants.add(newAnt)
+                gameView?.showAnt(newAnt)
+                handler.postDelayed(this, 1500)
+            }else {
                 handler.removeCallbacks(this)
                 gameView?.clearView()
                 gameView?.showGameOverTextVisibility(true)
                 gameView?.setPlayerButtonVisibility(true)
-            }else {
-                val ant = Ant((ants.size + 1).toLong(), random.nextFloat(), random.nextFloat())
-                ants.add(ant)
-                gameView?.showAnt(ant)
-                handler.postDelayed(this, 1500)
             }
 
         }
 
     }
-
+    private fun checkIfGameIsOver(): Boolean {
+        return ants.isNotEmpty()
+    }
     override fun onGameViewReady(view: Contract.GameView) {
         gameView = view
+        gameView?.clearView()
+        gameView?.showIntroTextVisibility(true)
+
     }
 
     override fun onViewDestroyed() {
+        handler.removeCallbacks(showNewAntRunnble)
         gameView = null
     }
 
@@ -49,15 +57,36 @@ class GameEngine : Contract.GameEngine {
         gameView?.clearView()
         ants.clear()
         showNewAntRunnble.run()
+        score = 0
 
     }
 
     override fun onAntClicked(ant: Ant) {
         ants.remove(ant)
         gameView?.hideAnt(ant)
-        score++
+        score ++
         gameView?.showScore(score)
 
 
+    }
+    private fun createNewAnt(): Ant {
+        val x = getAntXposition()
+        val y = getAntYposition()
+        val id = ants.size + 1
+        return Ant(id, x, y)
+    }
+
+    /**
+     * returns Ant's vertical position as a screen height ratio, in range 0.0-1.0
+     */
+    private fun getAntYposition(): Double {
+        return random.nextDouble()
+    }
+
+    /**
+     * returns Ant's horizontal position as a screen width ratio, in range 0.0-1.0
+     */
+    private fun getAntXposition(): Double {
+        return random.nextDouble()
     }
 }

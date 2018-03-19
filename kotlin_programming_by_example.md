@@ -22,4 +22,10 @@
      - Runs on JVM, Android VM, compiles to JavaScript and native code
      - Integrated bi-directionally with Java code
      - Plugged-in as extenal dependency, easy to update
+4. Kotlin Extension Functions
+     - Kotlin provides the ability to extend a class with new functionality
+       without having to inherit from the class or use any type of design 
+       pattern such as Decorator
+     - This is done via special declarations called Extensions
+     - Kotlin supports Extension Functions and Extension Properties
   

@@ -28,4 +28,6 @@
        pattern such as Decorator
      - This is done via special declarations called Extensions
      - Kotlin supports Extension Functions and Extension Properties
-  
+5. Kotlin Higher order functions 
+     - A higher order function is a function that takes functions as parameters, or returns a function
+       

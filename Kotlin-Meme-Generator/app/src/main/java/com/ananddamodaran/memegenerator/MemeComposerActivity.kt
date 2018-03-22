@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_meme_composer.*
 class MemeComposerActivity : AppCompatActivity() {
     object Constants {
         val EXTRA_IMAGE = "extra_img"
-        val PERMISSION_CODE = 4011411
+        val PERMISSION_CODE = 4011
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class MemeComposerActivity : AppCompatActivity() {
             val result = ContextCompat.checkSelfPermission(this,
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
             if (PackageManager.PERMISSION_GRANTED == result) {
-
+                    onPermissionGrated.invoke()
             } else {
                 ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         , Constants.PERMISSION_CODE)

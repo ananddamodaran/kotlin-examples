@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.ananddamodaran.memegenerator.MainActivity.Constant.CODE_IMAGE_PIC
 
 class MainActivity : AppCompatActivity() {
+
     val TAG = "MainActivity"
 
     object Constant {

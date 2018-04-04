@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.ananddamodaran.githubclient.model.Repository
 import com.ananddamodaran.githubclient.network.GitHubApi
+import com.ananddamodaran.githubclient.view.Detail
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Job
@@ -15,7 +16,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    val adapter = Adapter()
+    val adapter = Adapter({repository ->
+       val intent = Detail.getInent(this,repository.name,repository.url)
+        startActivity(intent)
+
+    })
 
     val gitHubApi: GitHubApi
     private var job: Job = Job()
@@ -37,6 +42,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
+    }
 
     fun searchGitHub(query: String) {
         adapter.setRepositories(emptyList())

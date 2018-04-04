@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.ananddamodaran.githubclient.model.Repository
 import kotlinx.android.synthetic.main.listitem.view.*
+import javax.security.auth.callback.Callback
 
 /**
  * Created by anand on 3/22/18.
  */
-class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
+class Adapter(private val callback: (Repository) ->Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     private var repos: MutableList<Repository> = ArrayList()
 
@@ -34,6 +35,9 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
         holder?.itemView?.repo_title?.text = repository.name
         holder?.itemView?.description?.text = repository.description
         holder?.itemView?.stars?.text = "${repository.stars.toString()}  stars"
+        holder?.itemView?.setOnClickListener{
+            callback.invoke(repository)
+        }
 
     }
 
